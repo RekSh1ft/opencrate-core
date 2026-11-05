@@ -1,8 +1,8 @@
 # OpenCrate Core
 
-**3D engine core for the browser.** Clean API, modular, tree-shakeable, zero runtime
-dependencies, strict TypeScript, WebGL2 — in the spirit of Three.js, scoped to a minimal
-production-quality core.
+ [MIT license](./LICENSE) · 23 KB gzipped · [strict TypeScript](./tsconfig.json) · [0 dependencies](./package.json) · [tree-shakeable ESM](./package.json)
+
+**A small, lightweight 3D engine for the web.** TypeScript and WebGL2, with an API that will feel familiar if you've spent time with Three.js , but scoped down to a minimal, production-quality engine that does one job well.
 
 ```ts
 import { Scene, PerspectiveCamera, Renderer, Mesh, BoxGeometry, BasicMaterial } from '@opencrate/core';
@@ -19,21 +19,18 @@ renderer.setSize(innerWidth, innerHeight);
 renderer.render(scene, camera);
 ```
 
-[**Try the live demo**](./examples) · [**Getting started**](./docs/getting-started.md) · [**API docs**](./docs/api) · [**Architecture & limitations**](./docs/architecture.md)
+[Try the demo](./examples) · [Getting started](./docs/getting-started.md) · [API docs](./docs/api) · [Architecture & limitations](./docs/architecture.md)
 
 ---
 
-## Why OpenCrate Core
+## Why this exists
 
-- **Zero runtime dependencies.** Nothing to audit, nothing to version-bump.
-- **Tree-shakeable.** `"sideEffects": false` + ESM — import only what you use.
-- **Strict TypeScript.** No `any` in public signatures; `tsc --noEmit` passes `strict`.
-- **Device-abstracted rendering.** The scene graph, materials, and geometries never touch
-  `gl` directly — only `WebGLDevice` does — so a future WebGPU backend is a sibling device,
-  not a rewrite.
-- **Allocation-conscious.** The render loop and math library are written to allocate nothing
-  per frame once a scene has stabilized (scratch statics, pooled render lists, cached uniforms).
-- **Small.** The entire public API gzips to ~23 KB.
+- **Zero runtime dependencies.** 
+- **Tree-shakeable.** ESM with `"sideEffects": false`
+- **Strict TypeScript, everywhere.** No `any` in public signatures. `tsc --noEmit` passes under `strict`.
+- **Rendering is abstracted on purpose.** The scene graph, materials, and geometries never touch `gl` directly — only `WebGLDevice` does. That makes a future WebGPU backend a sibling device rather than a rewrite.
+- **Allocation-conscious.** Once a scene stabilizes, the render loop and math library allocate nothing per frame
+- **Small.** The entire public API gzips to about 23 KB.
 
 ## Install
 
@@ -65,16 +62,13 @@ npm run dev      # launches the example scene
 | [`renderer`](./docs/api/renderer.md) | `Renderer` `WebGLDevice` `ShaderProgram` `RenderTarget` `RenderList` |
 | [`controls`](./docs/api/controls.md) | `OrbitControls` |
 
-Everything is re-exported from the package root (`import { X } from '@opencrate/core'`); the
-table above exists so you can jump straight to the doc page for the thing you need.
+Everything is re-exported from the package root — `import { Scene, Renderer } from '@opencrate/core'`. The table above is here so you can jump straight to the doc page for whatever you need.
 
 ## Documentation
 
-- **[Getting started](./docs/getting-started.md)** — install, render loop, lighting, materials,
-  textures, scene graph, controls, resizing, disposal, JSON loading. Start here.
+- **[Getting started](./docs/getting-started.md)** — install, render loop, lighting, materials, textures, scene graph, controls, resizing, disposal, JSON loading. Start here.
 - **[API reference](./docs/api)** — one page per module, covering every exported class.
-- **[Architecture & design decisions](./docs/architecture.md)** — why the engine is built the
-  way it is, and the v1 limitations you should know about before relying on something.
+- **[Architecture & design decisions](./docs/architecture.md)** — why the engine is built the way it is, and the v1 limitations you should know about before relying on something.
 - **[Contributing](./docs/CONTRIBUTING.md)** — project layout, scripts, coding conventions.
 
 ## Project layout
@@ -106,12 +100,6 @@ npm run typecheck     # tsc --noEmit, strict
 npm run test:math     # plain-assertion math smoke tests (tsx)
 ```
 
-## Extending
-
-Physics, audio, and loader packs are expected to live in sibling `@opencrate/*` packages
-rather than in this core. `@opencrate/core` intentionally stays free of anything that would
-block that — no global singletons, no hidden coupling between the renderer and any one
-material or light set.
 
 ## License
 
