@@ -1,0 +1,44 @@
+{
+  "name": "@opencrate/core",
+  "version": "0.1.0",
+  "description": "OpenCrate Core — 3D engine core",
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/opencrate-core.js",
+  "module": "./dist/opencrate-core.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/opencrate-core.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -p tsconfig.json --emitDeclarationOnly && vite build",
+    "build:size": "npm run build && gzip -c dist/opencrate-core.js | wc -c",
+    "typecheck": "tsc --noEmit",
+    "test:math": "tsx src/math/math.test.ts"
+  },
+  "devDependencies": {
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3",
+    "vite": "^5.4.21"
+  },
+  "keywords": [
+    "webgl",
+    "webgl2",
+    "3d",
+    "engine",
+    "graphics"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/opencrate/opencrate-core"
+  }
+}

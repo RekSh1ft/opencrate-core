@@ -1,0 +1,26 @@
+<!doctype html>
+<!-- OpenCrate Core — 3D engine core -->
+<!-- SPDX-License-Identifier: MIT -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OpenCrate Core — demo</title>
+  <style>
+    html, body { margin: 0; height: 100%; overflow: hidden; background: #0b0d10; }
+    canvas { display: block; width: 100vw; height: 100vh; touch-action: none; }
+    #overlay {
+      position: fixed; top: 10px; left: 10px;
+      font: 12px/1.4 ui-monospace, Menlo, monospace;
+      color: #d7e3ea; background: rgba(10, 12, 16, 0.6);
+      padding: 8px 10px; border-radius: 6px; pointer-events: none;
+      white-space: pre;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="app"></canvas>
+  <div id="overlay"><span id="fps">FPS: --</span><br /><span id="drawcalls">Draw calls: --</span></div>
+  <script type="module" src="./main.ts"></script>
+</body>
+</html>
