@@ -47,6 +47,13 @@ npm install
 npm run dev      # launches the example scene
 ```
 
+## Run the example demo
+You will need to run it as localhost.
+Run.
+```
+npm run dev
+```
+
 ## What's inside
 
 | Module | Exports |
